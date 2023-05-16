@@ -1,0 +1,20 @@
+program visual;
+
+uses
+  Vcl.Forms,
+  login in 'login.pas' {Form1},
+  umodul in 'umodul.pas' {DataModule1: TDataModule},
+  utama in 'utama.pas' {Form2},
+  tb_type in 'tb_type.pas' {Form3};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm3, Form3);
+  Application.Run;
+end.

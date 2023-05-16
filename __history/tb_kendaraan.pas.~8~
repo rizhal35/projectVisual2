@@ -1,0 +1,110 @@
+unit tb_kendaraan;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls;
+
+type
+  TForm7 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    DBGrid1: TDBGrid;
+    EIdMerek: TComboBox;
+    EIdJenis: TComboBox;
+    EIdType: TComboBox;
+    EIdWarna: TComboBox;
+    ENoPolisi: TEdit;
+    EBhnBkr: TEdit;
+    EThnPembuatan: TEdit;
+    EMesin: TEdit;
+    ERangka: TEdit;
+    EStok: TEdit;
+    EHargaJual: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form7: TForm7;
+
+implementation
+
+{$R *.dfm}
+
+uses umodul;
+
+procedure TForm7.Button1Click(Sender: TObject);
+begin
+  try
+           with DataModule1 do
+           begin
+           Zkendaraan.Append;
+            Zkendaraanno_polisi.AsString:=ENoPolisi.Text;
+           Zkendaraanid_merek.AsString:=EIdMerek.Text;
+           Zkendaraanid_jenis.AsString:=EIdJenis.Text;
+           Zkendaraanid_type.AsString:=EIdType.Text;
+           Zkendaraanid_warna.AsString:=EIdWarna.Text;
+           Zkendaraanbahan_bakar.AsString:=EBhnBkr.Text;
+           Zkendaraantahun_pembuatan.AsString:=EThnPembuatan.Text;
+           Zkendaraanno_mesin.AsString:=EMesin.Text;
+           Zkendaraanno_rangka.AsString:=ERangka.Text;
+           Zkendaraanstok.AsString:=EStok.Text;
+           Zkendaraanharga_jual.AsString:=EHargaJual.Text;
+
+
+           Zkendaraan.Post;
+           end;
+      except
+        on salah:Exception do
+        ShowMessage(salah.Message);
+    end;
+end;
+
+procedure TForm7.Button2Click(Sender: TObject);
+begin
+  try
+           with DataModule1 do
+           begin
+           Zkendaraan.Edit;
+            Zkendaraanno_polisi.AsString:=ENoPolisi.Text;
+           Zkendaraanid_merek.AsString:=EIdMerek.Text;
+           Zkendaraanid_jenis.AsString:=EIdJenis.Text;
+           Zkendaraanid_type.AsString:=EIdType.Text;
+           Zkendaraanid_warna.AsString:=EIdWarna.Text;
+           Zkendaraanbahan_bakar.AsString:=EBhnBkr.Text;
+           Zkendaraantahun_pembuatan.AsString:=EThnPembuatan.Text;
+           Zkendaraanno_mesin.AsString:=EMesin.Text;
+           Zkendaraanno_rangka.AsString:=ERangka.Text;
+           Zkendaraanstok.AsString:=EStok.Text;
+           Zkendaraanharga_jual.AsString:=EHargaJual.Text;
+
+
+           Zkendaraan.Post;
+           end;
+      except
+        on salah:Exception do
+        ShowMessage(salah.Message);
+    end;
+end;
+
+end.

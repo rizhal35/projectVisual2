@@ -1,0 +1,92 @@
+unit tb_warna;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids;
+
+type
+  TForm4 = class(TForm)
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    EIdWarna: TEdit;
+    ENamaWarna: TEdit;
+    EFilterData: TEdit;
+    Label3: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form4: TForm4;
+
+implementation
+
+{$R *.dfm}
+
+uses umodul;
+
+procedure TForm4.Button1Click(Sender: TObject);
+begin
+   try
+           with DataModule1 do
+           begin
+           Zwarna.Append;
+           Zwarnaid_warna.AsString:=EIdWarna.Text;
+           Zwarnanama_warna.AsString:=ENamaWarna.Text;
+           Zwarna.Post;
+           end;
+      except
+        on salah:Exception do
+        ShowMessage(salah.Message);
+    end;
+end;
+
+procedure TForm4.Button2Click(Sender: TObject);
+begin
+   try
+           with DataModule1 do
+           begin
+           Zwarna.Edit;
+           Zwarnaid_warna.AsString:=EIdWarna.Text;
+           Zwarnanama_warna.AsString:=ENamaWarna.Text;
+           Zwarna.Post;
+           end;
+      except
+        on salah:Exception do
+        ShowMessage(salah.Message);
+    end;
+end;
+
+procedure TForm4.Button3Click(Sender: TObject);
+begin
+  begin
+  if(
+  (Trim(EIdWarna.Text)='')and
+   (Trim(ENamaWarna.Text)='')
+
+) then
+begin
+   beep;
+   ShowMessage('Silahkan pilih data terlebi dahulu');
+   DBGrid1.SetFocus;
+   Exit;
+end else;
+  DataModule1.Zwarna.Delete
+end;
+
+end;
+
+end.
